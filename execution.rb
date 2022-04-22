@@ -45,30 +45,22 @@ require "byebug"
 #     sum
 # end
 
-#phase2
-# def largest_contiguous_subsum(array)
-#     current_sum = 0
-#     largest_sum = array.first
-    
-#     (0...array.length).each do |i|
-#         cur_sum = array[i..(i + 1)].sum
+# phase2
+def largest_contiguous_subsum(array)
+    current_sum = -999999999
+    largest_sum = -999999999
+    i = 0
 
-#        if cur_sum > largest_sum
-#         largest_sum = cur_sum
-#         current_sum = cur_sum
-#        else 
-        
-#        end
-
-#     end
-
-#     largest_sum
-# end
+    while i < array.length 
+        current_sum = [(current_sum + array[i]),array[i]].max
+        largest_sum = [current_sum,largest_sum].max
+        i += 1
+    end
+    largest_sum
+end
 
 
-
-
-list = [-5, -1, 5, -3, 6]
+list = [-5, -1, -3]
 p largest_contiguous_subsum(list) # => -1 (from [-1])
 
 list2 = [2, 3, -6, 7, -6, 7]
@@ -76,3 +68,4 @@ p largest_contiguous_subsum(list2) # => 8 (from [7, -6, 7])
 
 list3 = [5, 3, -7]
 p largest_contiguous_subsum(list3) # => 8 (from [5,3])
+
